@@ -1,5 +1,3 @@
-from turtle import title
-from types import NoneType
 from rest_framework.views import APIView, Request, Response, status
 from .models import Content
 from django.forms.models import model_to_dict
@@ -15,6 +13,9 @@ class ContentView(APIView):
 }
     err = {}
     type_err = {}
+
+    def __repr__(self) -> str:
+        return f"Expected to Receive: {self.valid_keys_type}"
 
     def get(self, request: Request) -> Response:
         contents = Content.objects.all()
