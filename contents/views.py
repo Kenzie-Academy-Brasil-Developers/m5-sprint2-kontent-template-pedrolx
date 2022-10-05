@@ -43,7 +43,8 @@ class ContentView(APIView):
     def is_valid(self, data: dict) -> None:
         for valid_key in self.valid_keys:
             if valid_key not in data.keys():
-                self.err.update({valid_key: 'Missing'})
+                index = self.valid_keys.index(valid_key)
+                self.err.update({valid_key: f'Missing {self.valid_keys_type[self.valid_keys[index]]} value'})
 
 
     def is_valid_type(self, data: dict) -> None:
